@@ -46,6 +46,8 @@ function Draggable({children, handleRef, onMove, x=0, y=0}) {
         handle.addEventListener("mousedown", onMouseDown);
         return () => {
             handle.removeEventListener("mousedown", onMouseDown);
+            // 간격 사이에 unmount가 발생했지만, debounce는 발생할 수 있음
+            Move.cancel(); // debounce 취소
         }
     }, [handleRef, onMouseDown]);
 
