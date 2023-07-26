@@ -1,9 +1,9 @@
 import React from 'react';
+import Memo from './Memo/Memo';
 
 function App() {
   return (
-    <div className="App">sticker-memo
-    </div>
+    <Memo/>
   );
 }
 
