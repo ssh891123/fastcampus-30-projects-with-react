@@ -8,10 +8,13 @@ function App({store}) {
   const Edit = useCallback((id, content) => {
     store.editMemo(id, content)
   }, [store]);
+  const SetWidthHeight = useCallback((id, width, height) => {
+    store.setWidthHeight(id, width, height);
+  }, [store]);
 
   return (
     <> {
-      store.memos.map((memo) => <Memo key={memo.id} item={memo} Edit={Edit} />)
+      store.memos.map((memo) => <Memo key={memo.id} item={memo} Edit={Edit} SetWidthHeight={SetWidthHeight}/>)
     }
     <AddIcon 
       sx={{
