@@ -5,10 +5,13 @@ import Memo from './Memo/Memo';
 
 function App({store}) {
   const AddMemo = useCallback(() => store.addMemo(), [store]);
+  const Edit = useCallback((id, content) => {
+    store.editMemo(id, content)
+  }, [store]);
 
   return (
     <> {
-      store.memos.map((item) => <Memo key={item.id} />)
+      store.memos.map((memo) => <Memo key={memo.id} item={memo} Edit={Edit} />)
     }
     <AddIcon 
       sx={{
