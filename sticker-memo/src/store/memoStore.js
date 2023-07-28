@@ -28,6 +28,7 @@ export default class MemoStore {
             addMemo: action,
             editMemo: action,
             setWidthHeight: action,
+            removeMemo: action,
         })
     }
 
@@ -54,5 +55,9 @@ export default class MemoStore {
         this.memos[index].x = x;
         this.memos[index].y = y;
         console.log(this.memos[index]);
+    }
+
+    removeMemo(id) {
+        this.memos.splice(this.getMemoIndex(id), 1);
     }
 }

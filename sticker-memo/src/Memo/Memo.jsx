@@ -44,6 +44,8 @@ import { useCallback } from "react";
         SetPosition(item.id, x, y);
     }, [item.id, SetPosition]);
 
+    const onClickDelete = useCallback(() => Delete(item.id), [item.id, Delete]);
+
     useEffect( ()=>{
         return () => {
             // 메모가 삭제됐을때, debounce 종료
@@ -65,6 +67,7 @@ import { useCallback } from "react";
                         sx={{ cursor: "move", fontSize: "25px" }} />
                     <CloseIcon
                         sx={{ cursor: "pointer", fontSize: "25px", float: "right" }}
+                        onClick={onClickDelete}
                     />
                 </div>
                 <textarea

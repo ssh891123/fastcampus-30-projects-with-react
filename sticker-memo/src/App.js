@@ -14,11 +14,21 @@ function App({store}) {
   const SetPosition = useCallback((id, x, y) => {
     store.setPosition(id, x, y);
   }, [store]);
+  const Delete = useCallback((id) => {
+    store.removeMemo(id);
+  }, [store]);
 
   return (
     <> {
       store.memos.map((memo) => 
-        <Memo key={memo.id} item={memo} Edit={Edit} SetWidthHeight={SetWidthHeight} SetPosition={SetPosition}/>
+        <Memo 
+          key={memo.id} 
+          item={memo} 
+          Edit={Edit} 
+          SetWidthHeight={SetWidthHeight} 
+          SetPosition={SetPosition}
+          Delete={Delete}
+        />
       )
     }
     <AddIcon 
