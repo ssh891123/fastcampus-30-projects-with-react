@@ -48,4 +48,11 @@ export default class MemoStore {
         this.memos[index].width = width;
         this.memos[index].height = height;
     }
+
+    setPosition(id, x, y) {
+        const index = this.getMemoIndex(id);
+        this.memos[index].x = x;
+        this.memos[index].y = y;
+        console.log(this.memos[index]);
+    }
 }
