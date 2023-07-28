@@ -41,6 +41,7 @@ import { useCallback } from "react";
     const onChangePosition = useCallback((x, y) => {
         // x, y도 이벤트를 빈번히 호출되지만, Draggable 컴포넌트에서 debounce가 적용중이라
         // SetPosition에는 미적용
+        console.log(x, y);
         SetPosition(item.id, x, y);
     }, [item.id, SetPosition]);
 
@@ -55,10 +56,10 @@ import { useCallback } from "react";
     }, [onChangeMemo, onChangeSize]);
 
     return (
-        <Draggable handleRef={handleRef} x={0} y={0} onMove={onChangePosition}>
+        <Draggable handleRef={handleRef} x={item.x} y={item.y} onMove={onChangePosition}>
             <div
                 className="memo-container"
-                style={{ width: `${250}px`, height: `${300}px` }}
+                style={{ width: `${item.width}px`, height: `${item.height}px` }}
                 ref={memoContainer}
             >
                 <div className="menu">
