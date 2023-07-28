@@ -18,13 +18,6 @@ import { useCallback } from "react";
         () => debounce(e => Edit(item.id, e.target.value), 500)
     , [item.id, Edit]);
 
-    useEffect( ()=>{
-        return () => {
-            // 메모가 삭제됐을때, debounce 종료
-            onChangeMemo.cancel();
-        };
-    }, [onChangeMemo]);
-
     // 메모 크기 변경
     const onChangeSize = useMemo(
         //메모 크기를 변경시키는 이벤트는 빈번하게 발생되므로 debounce로 최적화
@@ -50,6 +43,14 @@ import { useCallback } from "react";
         // SetPosition에는 미적용
         SetPosition(item.id, x, y);
     }, [item.id, SetPosition]);
+
+    useEffect( ()=>{
+        return () => {
+            // 메모가 삭제됐을때, debounce 종료
+            onChangeMemo.cancel();
+            onChangeSize.cancel();
+        };
+    }, [onChangeMemo, onChangeSize]);
 
     return (
         <Draggable handleRef={handleRef} x={0} y={0} onMove={onChangePosition}>
