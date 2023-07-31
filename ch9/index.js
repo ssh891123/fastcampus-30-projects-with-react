@@ -60,13 +60,6 @@ app.get('/:id', (req, res) => {
         return;
     }
 
-    const { author, message } = req.body;
-    if(!(author && author.length > 0 &&
-        message && message.length > 0)) {
-        res.json({ rs:false });
-        return;
-    }
-
     res.json(data[num]);
 });
 
@@ -78,9 +71,7 @@ app.post('/', (req, res) => {
     if(!(author && author.length > 0 &&
         message && message.length> 0)) {
         //응답: json에 추가되지 않음
-        res.json({
-            rs:false
-        });
+        res.json({ rs:false, msg:"author, message undefined" });
         return;
     }
 
