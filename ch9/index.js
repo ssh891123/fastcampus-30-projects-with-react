@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
     res.json(data);
 });
 
+app.get('/random', (req, res) => {
+    const rand = Math.floor(Math.random() * data.length);
+    console.log('random:'+rand);
+    res.json(data[rand]);
+});
+
 app.get('/:id', (req, res) => {
     const { id } = req.params; //id type은 string
     if(isNaN(id)) {
