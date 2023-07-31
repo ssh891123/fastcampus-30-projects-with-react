@@ -16,6 +16,34 @@ app.get('/', (req, res) => {
     res.json(data);
 });
 
+app.get('/:id', (req, res) => {
+    const { id } = req.params; //id type은 string
+    if(isNaN(id)) {
+        res.json({
+            rs:false,
+            msg:"id is not number!"
+        });
+        return;
+    }
+    const num = parseInt(id);
+    if(num >= data.length || num < 0) {
+        res.json({
+            rs:false,
+            msg:"id Index is not valid"
+        });
+        return;
+    }
+
+    const { author, message } = req.body;
+    if(!(author && author.length > 0 &&
+        message && message.length > 0)) {
+        res.json({ rs:false });
+        return;
+    }
+
+    res.json(data[num]);
+});
+
 // data를 생성할 때 사용(예: user생성)
 app.post('/', (req, res) => {
     console.log(req.body);
@@ -77,8 +105,43 @@ app.delete('/:id', (req, res) => {
 
 
 // data를 일괄 변경할 때
-app.put('/', (req, res) => {
-    res.send("<h1>I'm put methode</h1>");
+app.put('/:id', (req, res) => {
+    // res.send("<h1>I'm put methode</h1>");
+
+    //id 검증
+    const { id } = req.params; //id type은 string
+    if(isNaN(id)) {
+        res.json({
+            rs:false,
+            msg:"id is not number!"
+        });
+        return;
+    }
+    const num = parseInt(id);
+    if(num >= data.length || num < 0) {
+        res.json({
+            rs:false,
+            msg:"id Index is not valid"
+        });
+        return;
+    }
+
+    const { author, message } = req.body;
+    if(!(author && author.length > 0 &&
+        message && message.length > 0)) {
+        res.json({ rs:false });
+        return;
+    }
+
+    console.log('변경 전:'+JSON.stringify(data[num]));
+    // 명언을 변경
+    data[num] = {
+        author: req.body.author,
+        message: req.body.message
+    };
+    console.log('변경 후:'+JSON.stringify(data[num]));
+
+    res.json({ rs: true });
 });
 
 //patch 도 있음
