@@ -13,7 +13,27 @@ app.use(express.json());
 // data를 가져올 때 사용
 app.get('/', (req, res) => {
     // res.send("<h1>I'm get methode!!</h1>");
-    res.json(data);
+
+    //url에 ? 를 붙이면 됨
+    //예: localhost:3000?author=익명
+    //예: localhost:3000?author=에머슨&message=엄선된
+    const { author, message } = req.query; 
+    console.log(author, message);
+
+    // method - 1
+    // let _data = data;
+    // if(author) {
+    //     _data = _data.filter(value => author ? value.author.includes(author) : false);
+    // }
+    // if(message) {
+    //     _data = _data.filter(value => value.message.includes(message));
+    // }
+    //res.json(_data);
+
+    // method - 2
+    res.json( data
+        .filter(value => author ? value.author.includes(author) : true)
+        .filter(value => message ? value.message.includes(message) : true) ); 
 });
 
 app.get('/random', (req, res) => {
