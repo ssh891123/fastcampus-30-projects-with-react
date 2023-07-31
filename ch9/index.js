@@ -46,8 +46,33 @@ app.post('/', (req, res) => {
 
 
 // data를 제거할 때(db에서 제거)
-app.delete('/', (req, res) => {
-    res.send("<h1>I'm delete methode</h1>");
+app.delete('/:id', (req, res) => {
+    // res.send("<h1>I'm delete methode</h1>");
+
+    // usl path parameter를 통해 몇번째 명언을 제거할지 결정
+    const { id } = req.params; //id type은 string
+    if(isNaN(id)) {
+        res.json({
+            rs:false,
+            msg:"id is not number!"
+        });
+        return;
+    }
+    const num = parseInt(id);
+    if(num >= data.length || num < 0) {
+        res.json({
+            rs:false,
+            msg:"id Index is not valid"
+        });
+        return;
+    }
+
+    // console.log(data[id]);
+    data.splice(num, 1);
+
+    res.json({
+        rs:true
+    })
 });
 
 
