@@ -1,12 +1,14 @@
 //import express from 'express; 동일
 const express = require('express'); 
 const fs = require('fs');
+const cors = require('cors');
 
 const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
 // console.log(data);
 
 const app = express();
 app.use(express.json());
+app.use(cors()); //cors 에러 해결
 
 //[req]request - client가 server에 요청줄때
 //[res]response - 어떻게 응답할지
