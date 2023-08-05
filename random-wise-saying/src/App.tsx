@@ -84,7 +84,8 @@ function App() {
     );
   }
   return (
-    <Flex pt="64px" pl="64px" flexDirection={"column"}>
+    //mobile 8px, tablet & pc 64px
+    <Flex pt={["8px", "64px", "64px"]} pl={["8px", "64px", "64px"]} flexDirection={"column"}>
       <Flex 
         pb="44px"
         style={{
@@ -112,7 +113,8 @@ function App() {
 
       {
         createMode && 
-        <Flex width="1200px" height="48px" mb="16px">
+        //mobile 8px, tablet & pc 64px
+        <Flex width={["90%", "416px", "416px", "416px"]} height="48px" mb="16px">
           <Flex 
             border={"solid 1px #707070"} 
             flex ={1} 
