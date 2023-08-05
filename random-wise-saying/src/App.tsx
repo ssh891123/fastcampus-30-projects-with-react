@@ -35,7 +35,7 @@ function App() {
   if (page === 'main') {
     return (
       <>
-        <Flex position={"fixed"} right="64px" top={"64px"}>
+        <Flex position={"fixed"} right={["16px","64px","64px"]} top={["16px","64px","64px"]}>
           <Flex 
             bg="#2699FB" width={"48px"} height={"48px"} borderRadius={"4px"}
             alignItems="center" justifyContent={"center"}
